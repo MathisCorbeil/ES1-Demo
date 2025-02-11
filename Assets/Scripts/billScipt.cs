@@ -8,8 +8,9 @@ public class billScipt : MonoBehaviour
 
 {
 
-    public float temps =250f;
-    public float time = 0f;
+    public float temps =0f;
+    private bool terminer = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +20,15 @@ public class billScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if( time > Time.deltaTime){
-            time = 0f;
+       if(terminer==true){
+        temps+=Time.deltaTime;
+        
+        if(temps >= 5f){
+            redemarrer();
+            
         }
+       }
+       
     }
 
 
@@ -33,10 +39,9 @@ public class billScipt : MonoBehaviour
         }
 
         if(collision.gameObject.CompareTag("Terminus")){
-           temps -= time;
-           if (temps==0f){
-            redemarrer();
-           }
+           terminer = true;
+          
+           
         }
     }
 
